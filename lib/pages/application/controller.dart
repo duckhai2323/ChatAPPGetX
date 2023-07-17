@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../comcom/entities/user.dart';
 
 class ApplicationController extends GetxController {
   ApplicationController();
@@ -8,9 +11,12 @@ class ApplicationController extends GetxController {
   late final List<String> tabTitles;
   late final PageController pageController;
   late final List<BottomNavigationBarItem> bottomTab;
+  final db = FirebaseFirestore.instance;
+  final token = UserStore.to.token;
+  late UserData profileData;
 
   @override
-  void onInit() {
+  void onInit() async {
     // TODO: implement onInit
     super.onInit();
     tabTitles = ['chat','Contact','Profile'];
@@ -80,6 +86,15 @@ class ApplicationController extends GetxController {
       ),
     ];
     pageController = PageController(initialPage: state.value);
+
+    var profile = await db.collection("users").where("id",isEqualTo: token).withConverter(
+      fromFirestore: UserData.fromFirestore,
+      toFirestore: (UserData userdata, options) => userdata.toFirestore()
+    ).get();
+
+    for(var doc in profile.docs){
+      profileData = doc.data();
+    }
   }
 
   @override
