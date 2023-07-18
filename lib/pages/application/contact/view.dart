@@ -14,7 +14,10 @@ class ContactPage extends GetView<ContactController>{
     return Column(
       children: [
         AppBarWidget(),
-        DisplayUsers(),
+        SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: DisplayUsers(),
+        ),
       ],
     );
   }

@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../pages/application/view.dart';
+import '../../pages/chat/bindings.dart';
+import '../../pages/chat/view.dart';
 import '../../pages/signin/bindings.dart';
 import '../../pages/signin/view.dart';
 import '../../pages/welcome/bindings.dart';
@@ -35,6 +37,12 @@ class AppPages {
       name: AppRoutes.Application,
       page: () => ApplicationPage(),
       binding: ApplicationBinding(),
+    ),
+
+    GetPage(
+      name: AppRoutes.Chat,
+      page: () => ChatPage(),
+      binding: ChatBinding(),
     ),
   ];
 }

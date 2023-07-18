@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebasechat/comcom/entities/user.dart';
 import 'package:get/get.dart';
 
+import '../../../comcom/routes/names.dart';
+
 class ContactController extends GetxController {
   RxList<UserData> listUser = <UserData>[].obs;
   ContactController();
@@ -22,5 +24,9 @@ class ContactController extends GetxController {
     for(var doc in usersbase.docs){
       listUser.add(doc.data());
     }
+  }
+  
+  void ClickItem(UserData to_user) {
+    Get.toNamed(AppRoutes.Chat,parameters: {"to_uid": to_user.id??"","to_name":to_user.name??"","to_avatar":to_user.photourl??""});
   }
 }

@@ -11,7 +11,7 @@ class DisplayUsers extends GetView<ContactController>{
     return Container(
       margin: const EdgeInsets.only(right: 10,top: 10,bottom: 10),
       width: MediaQuery.of(context).size.width,
-      child: ListView.builder(
+      child: Obx(()=>ListView.builder(
         itemCount: controller.listUser.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -20,46 +20,51 @@ class DisplayUsers extends GetView<ContactController>{
             padding: const EdgeInsets.only(top: 10.0),
             child: Column(
               children: [
-                ListTile(
-                  leading: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 32,
-                        backgroundColor: Colors.lightBlueAccent,
-                        child:Padding(
-                          padding: const EdgeInsets.all(3),
+                InkWell(
+                  onTap: (){
+                    controller.ClickItem(controller.listUser[index]);
+                  },
+                  child: ListTile(
+                    leading: Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: 32,
+                          backgroundColor: Colors.lightBlueAccent,
+                          child:Padding(
+                            padding: const EdgeInsets.all(3),
+                            child: CircleAvatar(
+                              radius: 28,
+                              backgroundImage: CachedNetworkImageProvider("${controller.listUser[index].photourl}"),
+                            ),
+                          ) ,
+                        ),
+                        const Positioned(
+                          right: 3,
+                          bottom: 3,
                           child: CircleAvatar(
-                            radius: 28,
-                            backgroundImage: CachedNetworkImageProvider("${controller.listUser[index].photourl}"),
-                          ),
-                        ) ,
-                      ),
-                      const Positioned(
-                        right: 3,
-                        bottom: 3,
-                        child: CircleAvatar(
-                          radius: 8,
-                          backgroundColor: Colors.white,
-                          child: CircleAvatar(
-                            radius: 6,
-                            backgroundColor: Color(0xFF4CAF50),
+                            radius: 8,
+                            backgroundColor: Colors.white,
+                            child: CircleAvatar(
+                              radius: 6,
+                              backgroundColor: Color(0xFF4CAF50),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-
-                  title: Text(
-                    controller.listUser[index].name??"",
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold
+                      ],
                     ),
-                  ),
 
-                  trailing: const CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Colors.blue,
+                    title: Text(
+                      controller.listUser[index].name??"",
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+
+                    trailing: const CircleAvatar(
+                      radius: 7,
+                      backgroundColor: Colors.blue,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10,),
@@ -71,7 +76,7 @@ class DisplayUsers extends GetView<ContactController>{
             ),
           );
         },
-      ),
+      ),),
     );
   }
 }
