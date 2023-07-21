@@ -32,7 +32,7 @@ class WelcomePage extends GetView<WelcomeController>{
                     height: MediaQuery.of(context).size.height,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/image1.jpg'),
+                        image: AssetImage('assets/images/intro1.png'),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -43,7 +43,7 @@ class WelcomePage extends GetView<WelcomeController>{
                     height: MediaQuery.of(context).size.height,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/image2.jpg'),
+                        image: AssetImage('assets/images/intro2.png'),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -56,7 +56,7 @@ class WelcomePage extends GetView<WelcomeController>{
                     height: MediaQuery.of(context).size.height,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/image3.jpg'),
+                        image: AssetImage('assets/images/intro3.png'),
                         fit: BoxFit.fill,
                       ),
                     ),

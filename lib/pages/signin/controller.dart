@@ -61,7 +61,7 @@ class SignInController extends GetxController{
           ).add(data);
         }
         Fluttertoast.showToast(msg: "login cuccess");
-        //await _googleSigin.signOut();
+        await _googleSigin.signOut();
         Get.offAndToNamed(AppRoutes.Application);
       }
     } catch(e){

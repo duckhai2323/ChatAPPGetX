@@ -1,3 +1,4 @@
+import 'package:firebasechat/pages/chat/chat_list.dart';
 import 'package:firebasechat/pages/chat/controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'appbar.dart';
 
 class ChatPage extends GetView<ChatController>{
 
+  var messageText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,6 +29,7 @@ class ChatPage extends GetView<ChatController>{
           constraints: BoxConstraints.expand(),
           child: Stack(
             children: [
+              ChatList(),
               Positioned(
                 bottom: 5,
                 height: 50,
@@ -96,6 +99,7 @@ class ChatPage extends GetView<ChatController>{
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 6),
                             child: TextField(
+                              controller: messageText,
                               style: TextStyle(fontSize: 18),
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(top: 5,left: 10),
@@ -122,7 +126,11 @@ class ChatPage extends GetView<ChatController>{
                         SizedBox(width: 20,),
                         InkWell(
                           onTap: (){
-
+                            String str = messageText.text.toString();
+                            if(str!=""){
+                              controller.sendMessage(str);
+                            }
+                            messageText.text = "";
                           },
                           child: const Icon(
                             Icons.send,

@@ -8,8 +8,8 @@ class Msg {
   final String? from_avatar;
   final String? to_avatar;
   final String? last_msg;
-  final String? last_time;
-  final String? msg_num;
+  final Timestamp? last_time;
+  final int? msg_num;
 
   Msg({
       this.from_uid,
@@ -23,10 +23,7 @@ class Msg {
       this.msg_num
   });
 
-  factory Msg.fromFirestore(
-      DocumentSnapshot<Map<String,dynamic>> snapshot,
-      SnapshotOptions options,
-      ){
+  factory Msg.fromFirestore(DocumentSnapshot<Map<String,dynamic>> snapshot,SnapshotOptions? options){
     final data = snapshot.data();
     return Msg(
       from_uid: data?['from_uid'],
@@ -44,7 +41,7 @@ class Msg {
   Map<String,dynamic> toFirestore(){
     return{
       if(from_uid!=null) "from_uid" :from_uid,
-      if(from_name!=null) "from_uid" :from_name,
+      if(from_name!=null) "from_name" :from_name,
       if(from_avatar!=null) "from_avatar" :from_avatar,
       if(to_uid!=null) "to_uid" :to_uid,
       if(to_name!=null) "to_name" :to_name,
